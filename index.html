@@ -7,15 +7,15 @@
 
 <body>
 <script>
-
+//setup character types array to be used in script
 var charTypes = {
 				'upper': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 				'lower': 'abcdefghijklmnopqrstuvwxyz',
 				'number': '0123456789',
 				'special': '!$%^&*()-=+[]{};#:@~,./<>?'
 			};
-var length 
 
+//validate length between 8 and 128 characters
 function validateLength(length) {
     var x, text;
 
@@ -30,6 +30,7 @@ function validateLength(length) {
     return length;
 }
 
+//generate the password based on how many characters and character sets
 function randomPassword(passwordLength, choices) {
     var allChars = "";
 				for (var i = 0; i < choices.length; i++) {
@@ -43,6 +44,7 @@ function randomPassword(passwordLength, choices) {
 				return password;
 }
 
+//take the input from the form and build the array to pick characters from
 function generatePassword(passwordLength) {
                 var u = document.getElementById('upper').checked;
                 var l = document.getElementById('lowe').checked;
@@ -77,7 +79,16 @@ function generatePassword(passwordLength) {
 				$display.textContent  = password;
             }
 </script>
+<!-- add css entry to display password-->
+<style type="text/css">
+    p#display-password {
+            font-family: monospace;
+            font-size: 20px;
+    }
+</style>
 
+<!--Create form for the various options-->
+<h1>Password Generator</h1>
 <form action="/action_page.php">
 <p>Select character sets that you want to apply to your new password<br>
  If you do not choose any the deault is all character sets and 12 character password</p>
@@ -93,6 +104,7 @@ function generatePassword(passwordLength) {
 <input value = "Start Over" onClick="window.location.reload();"></input>
 </form>
 
+<!--Display the password after generating-->
 <p id="display-password"></p>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
