@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+ <html>
+<head>
+<meta http-equiv=”Content-Type” content=”text/html; charset=windows-1252″>
+<title>Password Generator</title>
+</head>
+
+<body>
+<script>
+
+var charTypes = {
+				'upper': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+				'lower': 'abcdefghijklmnopqrstuvwxyz',
+				'number': '0123456789',
+				'special': '!$%^&*()-=+[]{};#:@~,./<>?'
+			};
+var length 
+
+function validateLength(length) {
+    var x, text;
+
+// Get the value of the input field with id="number"
+    x = document.getElementById("length").value;
+
+// If x is Not a Number or less than one or greater than 10
+    if (isNaN(x) || x < 8 || x > 128) {
+      alert("Number not valid");
+    } 
+    return length;
+}
+
+function randomPassword(passwordLength, choices) {
+    var allChars = "";
+				for (var i = 0; i < choices.length; i++) {
+					allChars += choices[i];
+				}
+				var numChars = allChars.length;
+				var password = "";
+				for (var i = 1; i <= passwordLength; i++) {
+					password += allChars.charAt(Math.floor(Math.random() * numChars));
+                }
+				return password;
+}
+
+function generatePassword(passwordLength) {
+                var u = document.getElementById('upper').checked;
+                var l = document.getElementById('lowe').checked;
+                var n = document.getElementById('number').checked;
+                var s = document.getElementById('special').checked;
+				var choices = [];
+				for (id in charTypes) {
+                    if ( id  === "upper"  && u == "1") {
+                        choices.push(charTypes.upper);
+                    }
+                    if ( id  === "lower"  && l == "1") {
+                        choices.push(charTypes.lower);
+                    }
+                    if ( id  === "number"  && n == "1") {
+                        choices.push(charTypes.number);
+                    }
+                    if ( id  === "special"  && s == "1") {
+                        choices.push(charTypes.special);
+                    }
+                }  
+                if ( u == "0" && l == "0" && n == "0" && s == "0" ) {
+                    choices = charTypes
+                }
+ 
+                var length = document.getElementById('length');
+                var passwordLength = validateLength(length.value);
+                var password = randomPassword(passwordLength, choices);
+                var $display = document.getElementById('display-password');
+				$display.textContent  = password;
+            }
+</script>
+
+<form action="/action_page.php">
+<p>Select character sets that you want to apply to your new password</p>
+<p>If you do not choose any the deault is all character sets and 12 character password</p>
+<div id="MyForm">
+<input type="checkbox" id="upper" class="type" Value=”Item1″>Uppercase
+<input type="checkbox" id="lowe" class="type" Value=”Item2″>Lowercase
+<input type="checkbox" id="number" class="type" Value=”Item3″>Numeric
+<input type="checkbox" id="special" class="type" Value=”Item4″>Special Characters<br><br>
+<label for="length">Number of Characters for password (between 8 and 128):</label> 
+<input type="number" id="length" value="12" name="char"> <br><br>   
+</div>
+
+<input value= "Generate Password" onclick="generatePassword(); return false;"> <br>
+
+</form>
+<p id="display-password"></p>
+<button class="copy-button" data-clipboard-target="#display-password">
+    <i class="fa fa-clipboard" aria-hidden="true"></i>
+</button>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
