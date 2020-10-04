@@ -75,8 +75,8 @@ function generatePassword(passwordLength) {
 </script>
 
 <form action="/action_page.php">
-<p>Select character sets that you want to apply to your new password</p>
-<p>If you do not choose any the deault is all character sets and 12 character password</p>
+<p>Select character sets that you want to apply to your new password<br>
+ If you do not choose any the deault is all character sets and 12 character password</p>
 <div id="MyForm">
 <input type="checkbox" id="upper" class="type" Value=”Item1″>Uppercase
 <input type="checkbox" id="lowe" class="type" Value=”Item2″>Lowercase
@@ -90,9 +90,7 @@ function generatePassword(passwordLength) {
 
 </form>
 <p id="display-password"></p>
-<button class="copy-button" data-clipboard-target="#display-password">
-    <i class="fa fa-clipboard" aria-hidden="true"></i>
-</button>
+
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
