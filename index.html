@@ -24,7 +24,8 @@ function validateLength(length) {
 
 // If x is Not a Number or less than one or greater than 10
     if (isNaN(x) || x < 8 || x > 128) {
-      alert("Number not valid");
+        if(!alert("Number not valid must be between 8 and 128")){window.location.reload();}
+  //    alert("Number not valid must be between 8 and 128");
     } 
     return length;
 }
@@ -32,9 +33,9 @@ function validateLength(length) {
 function randomPassword(passwordLength, choices) {
     var allChars = "";
 				for (var i = 0; i < choices.length; i++) {
-					allChars += choices[i];
+                    allChars += choices[i];
 				}
-				var numChars = allChars.length;
+                var numChars = allChars.length;
 				var password = "";
 				for (var i = 1; i <= passwordLength; i++) {
 					password += allChars.charAt(Math.floor(Math.random() * numChars));
@@ -63,7 +64,10 @@ function generatePassword(passwordLength) {
                     }
                 }  
                 if ( u == "0" && l == "0" && n == "0" && s == "0" ) {
-                    choices = charTypes
+                    choices.push(charTypes.upper);
+                    choices.push(charTypes.lower);
+                    choices.push(charTypes.number);
+                    choices.push(charTypes.special);
                 }
  
                 var length = document.getElementById('length');
