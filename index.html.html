@@ -1,8 +1,56 @@
-<!DOCTYPE html> 
- <html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv=”Content-Type” content=”text/html; charset=windows-1252″>
-<title>Password Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+body{
+	margin-top: 7%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+h2 { text-align: center }
+
+input[type=checkbox] {
+    padding-left:5px;
+    padding-right:5px;
+    border-radius:4px;
+
+    -webkit-appearance:button;
+
+    border: double 2px #00F;
+
+    background-color:#0b0095;
+    color:#FFF;
+    white-space: nowrap;
+    overflow:hidden;
+
+    width:15px;
+    height:15px;
+}
+
+input[type=checkbox]:checked {
+    background-color:#000;
+    border-left-color:#06F;
+    border-right-color:#06F;
+}
+
+input[type=checkbox]:hover {
+    box-shadow:0px 0px 10px #1300ff;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -74,38 +122,53 @@ function generatePassword(passwordLength) {
  
                 var length = document.getElementById('length');
                 var passwordLength = validateLength(length.value);
-                var password = randomPassword(passwordLength, choices);
-                var $display = document.getElementById('display-password');
-				$display.textContent  = password;
+                var resultPass = randomPassword(passwordLength, choices);
+                document.getElementById("password").innerHTML = resultPass;
+                console.log(resultPass);
             }
+
+            function copyPass(){
+
+document.querySelector("textarea").select();
+document.execCommand("Copy");
+alert("Password copied to clipboard!");
+}
 </script>
-<!-- add css entry to display password-->
-<style type="text/css">
-    p#display-password {
-            font-family: monospace;
-            font-size: 20px;
-    }
-</style>
 
 <!--Create form for the various options-->
 <h1>Password Generator</h1>
-<form action="/action_page.php">
-<p>Select character sets that you want to apply to your new password<br>
- If you do not choose any the deault is all character sets and 12 character password</p>
+<!-- <form action="/action_page.php"> -->
+    <form>
+    <div class="card shadow-sm bg-white" style="min-width: 40%; max-height: 50%;">
+        <div class="card-body">
+            <h2 class="card-title" style="font-weight: bold">Generate a Password</h2>
+            <p>Select character sets that you want to apply to your new password<br>
+                If you do not choose any the deault is all character sets and 12 character password</p>
+            <textarea style= "margin:5% auto; padding: 10%; text-align:center; border: dashed 2px grey; width: 100%;" readonly id="password" placeholder="Your Secure Password"></textarea>
+            
+
 <div id="MyForm">
-<input type="checkbox" id="upper" class="type" Value=”Item1″>Uppercase
-<input type="checkbox" id="lowe" class="type" Value=”Item2″>Lowercase
-<input type="checkbox" id="number" class="type" Value=”Item3″>Numeric
-<input type="checkbox" id="special" class="type" Value=”Item4″>Special Characters<br><br>
-<label for="length">Number of Characters for password (between 8 and 128):</label> 
-<input type="number" id="length" value="12" name="char"> <br><br>   
+    <input type="checkbox" id="upper"  class="type" Value=”False″>Uppercase
+    <input type="checkbox" id="lowe" class="type" Value=”False″>Lowercase
+    <input type="checkbox" id="number" class="type" Value=”False″>Numeric
+    <input type="checkbox" id="special" class="type" Value=”False″>Special Characters<br><br>
+    <label for="length">Number of Characters for password (between 8 and 128):</label> 
+    <input type="number" id="length" value="12" name="char"> <br><br>   
 </div>
-<input value= "Generate Password" onclick="generatePassword(); return false;"> 
-<input value = "Start Over" onClick="window.location.reload();"></input>
+    <div class="row justify-content-between m-0">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+<!-- ONCLICK BITTONS SET -->
+         <button onclick="generatePassword()" type="button" class="btn btn-light" style= "border-radius:20px; background-color: darkred; color:white;">Generate Password</button>
+        </div>
+       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+         <button onclick="copyPass()" type="button" class="btn btn-light" style= "border-radius:20px; background-color:lightcoral; color:white;">Copy to clipboard</button>
+       </div>    
+    </div>
+
+</div>
+</div>
 </form>
 
-<!--Display the password after generating-->
-<p id="display-password"></p>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
