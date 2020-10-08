@@ -29,6 +29,8 @@ using random generate a password of the proper length
 display the users new password   
 add copy button to copy password to clipboard    
 
+# Lesson learned
+Getting to complicated to keep track of everything being in one file. Need to start breaking up code into html, style and script files
 
 # Website
 https://rich30041.github.io/JavaScript_Password_Generator/
